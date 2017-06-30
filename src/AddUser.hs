@@ -8,16 +8,15 @@ import User
 main :: IO ()
 main = do
   hSetBuffering stdout NoBuffering
-  putStr "Username: "
-  username <- getLine
-  putStr "Shell: "
-  shell <- getLine
-  putStr "Home directory: "
-  home <- getLine
-  putStr "Real name: "
-  realName <- getLine
-  putStr "Phone number: "
-  phone <- getLine
+  username <- promptFor "Username"
+  shell <- promptFor "Shell"
+  home <- promptFor "Home directory"
+  realName <- promptFor "Real name"
+  phone <- promptFor "Phone number"
   conn <- open "finger.db"
   execute conn insertUser (Null, username, shell, home, realName, phone)
   close conn
+    where
+      promptFor msg = do
+        putStr $ msg ++ ": "
+        getLine
