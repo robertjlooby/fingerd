@@ -47,6 +47,10 @@ insertUser :: Query
 insertUser =
   "INSERT INTO users VALUES (?, ?, ?, ?, ?, ?)"
 
+updateUser :: Query
+updateUser =
+  "UPDATE users SET username = ?, shell = ?, homeDirectory = ?, realName = ?, phone = ? WHERE id = ?"
+
 allUsers :: Query
 allUsers =
   "SELECT * FROM users"
